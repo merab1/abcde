@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "189824456821",
+    "project_id": "commschool",
+    "storage_bucket": "commschool.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189824456821:android:4f0eb602c2096a83b6003c",
+        "android_client_info": {
+          "package_name": "com.example.abcde"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189824456821-berbvt7gss50k8m2udkrt85ousmdmjlq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH9dNGhQe0H7hXsNuz5JRXmSzsraIfQU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189824456821-berbvt7gss50k8m2udkrt85ousmdmjlq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
