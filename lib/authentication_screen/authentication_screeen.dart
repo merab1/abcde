@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:abcde/authentication_screen/login_registration.dart';
 import 'package:flutter/material.dart';
 
 class Auth extends StatelessWidget {
@@ -16,9 +16,11 @@ class Auth extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginRegistration.pathId);
+                },
                 child: const Text('Sign in with email'),
-                minWidth: 160,
+                minWidth: 210,
                 color: Colors.blue,
               ),
               const SizedBox(
@@ -26,8 +28,8 @@ class Auth extends StatelessWidget {
               ),
               MaterialButton(
                 onPressed: () {},
-                child: const Text('Sign in Google'),
-                minWidth: 160,
+                child: const Text('Sign in with Google'),
+                minWidth: 210,
                 color: Colors.blue,
               ),
               const SizedBox(
@@ -35,8 +37,8 @@ class Auth extends StatelessWidget {
               ),
               MaterialButton(
                 onPressed: () {},
-                child: const Text('Sign phone number'),
-                minWidth: 160,
+                child: const Text('Sign in with phone number'),
+                minWidth: 210,
                 color: Colors.blue,
               ),
             ],
