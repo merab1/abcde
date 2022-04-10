@@ -1,4 +1,6 @@
+import 'package:abcde/authentication_screen/login.dart';
 import 'package:abcde/authentication_screen/login_registration.dart';
+import 'package:abcde/authentication_screen/registration.dart';
 import 'package:flutter/material.dart';
 
 import 'authentication_screen/authentication_screeen.dart';
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
       routes: {
         Auth.pathId: (context) => const Auth(),
         LoginRegistration.pathId: (context) => const LoginRegistration(),
+        Login.pathId: (context) => const Login(),
+        Registration.pathId: (context) => const Registration(),
       },
     );
   }

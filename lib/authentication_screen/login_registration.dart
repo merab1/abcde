@@ -1,4 +1,7 @@
+import 'package:abcde/authentication_screen/registration.dart';
 import 'package:flutter/material.dart';
+
+import 'login.dart';
 
 class LoginRegistration extends StatelessWidget {
   const LoginRegistration({Key? key}) : super(key: key);
@@ -16,7 +19,9 @@ class LoginRegistration extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, Login.pathId);
+              },
               color: Colors.blue,
               child: const Text('Login'),
             ),
@@ -24,7 +29,9 @@ class LoginRegistration extends StatelessWidget {
               height: 10,
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, Registration.pathId);
+              },
               color: Colors.blue,
               child: const Text('Registration'),
             ),
