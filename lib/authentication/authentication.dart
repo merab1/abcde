@@ -10,52 +10,37 @@ class Auth extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Authentication')),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('xdsds'),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextButton(
-              child: const Text('sdsds'),
-              onPressed: () {},
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            OutlinedButton(
-              child: const Text('dfdfd'),
-              onPressed: () {},
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            MaterialButton(
-              child: const Text('dsds'),
-              onPressed: () {},
-              color: Colors.green,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            RawMaterialButton(
-              fillColor: Colors.green,
-              child: const Text('dsdsds'),
-              onPressed: () {},
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CupertinoButton(
-              color: Colors.green,
-              child: const Text('dsdsd'),
-              onPressed: () {},
-            ),
-          ],
+        child: SizedBox.expand(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MaterialButton(
+                onPressed: () {},
+                child: const Text('Sign in with email'),
+                minWidth: 160,
+                color: Colors.blue,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: const Text('Sign in Google'),
+                minWidth: 160,
+                color: Colors.blue,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: const Text('Sign phone number'),
+                minWidth: 160,
+                color: Colors.blue,
+              ),
+            ],
+          ),
         ),
       ),
     );
