@@ -1,5 +1,8 @@
+import 'package:abcde/authentication_screen/after_auth.dart';
 import 'package:abcde/authentication_screen/login_registration.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth extends StatelessWidget {
   const Auth({Key? key}) : super(key: key);
@@ -27,7 +30,12 @@ class Auth extends StatelessWidget {
                 height: 10,
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  signInWithGoogle().then((value) {
+                    print(value.user!.uid);
+                    Navigator.pushNamed(context, AfterAuth.pathId);
+                  });
+                },
                 child: const Text('Sign in with Google'),
                 minWidth: 210,
                 color: Colors.blue,
@@ -46,5 +54,18 @@ class Auth extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
