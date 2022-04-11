@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         Auth.pathId: (context) => const Auth(),
         LoginRegistration.pathId: (context) => const LoginRegistration(),
         Login.pathId: (context) => Login(),
-        Registration.pathId: (context) => const Registration(),
+        Registration.pathId: (context) => Registration(),
       },
     );
   }

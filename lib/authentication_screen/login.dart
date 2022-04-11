@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
   static const String pathId = 'Login';
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   String _email = '';
+
   String _password = '';
 
   final _auth = FirebaseAuth.instance;
+
   bool _isLoading = false;
 
   @override
@@ -59,9 +67,9 @@ class Login extends StatelessWidget {
                             content: Text('Please, enter email & password'));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       } else {
-                     //   setState(() {
+                        setState(() {
                           _isLoading = true;
-                     //   });
+                        });
                       }
                     },
                     child: const Text('Login'),
