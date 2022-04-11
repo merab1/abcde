@@ -31,6 +31,7 @@ class _RegistrationState extends State<Registration> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              keyboardType: TextInputType.emailAddress,
               decoration:
               const InputDecoration(hintText: 'Enter your email'),
               onChanged: ((text) {
