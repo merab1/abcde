@@ -1,3 +1,4 @@
+import 'package:abcde/authentication_screen/after_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -32,8 +33,9 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   TextField(
-                    decoration: const InputDecoration(hintText: 'Enter your email'),
+                  TextField(
+                    decoration:
+                        const InputDecoration(hintText: 'Enter your email'),
                     onChanged: ((text) {
                       _email = text;
                     }),
@@ -41,7 +43,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 20,
                   ),
-                   TextField(
+                  TextField(
                     decoration:
                         const InputDecoration(hintText: 'Enter your password'),
                     onChanged: ((text) {
@@ -53,14 +55,14 @@ class _LoginState extends State<Login> {
                     height: 20,
                   ),
                   MaterialButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_email == '' && _password != '') {
                         const snackBar =
-                        SnackBar(content: Text('Please, enter email'));
+                            SnackBar(content: Text('Please, enter email'));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       } else if (_email != '' && _password == '') {
                         const snackBar =
-                        SnackBar(content: Text('Please, enter password'));
+                            SnackBar(content: Text('Please, enter password'));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       } else if (_email == '' && _password == '') {
                         const snackBar = SnackBar(
@@ -69,7 +71,19 @@ class _LoginState extends State<Login> {
                       } else {
                         setState(() {
                           _isLoading = true;
+                          print(_email);
+                          print(_password);
                         });
+                      }
+                      try {
+                        final user = await _auth.signInWithEmailAndPassword(
+                            email: _email, password: _password);
+                        if(user != null) {
+                          Navigator.pushNamed(context, AfterAuth.pathId);
+                        }
+
+                      } catch (e) {
+                        print(e);
                       }
                     },
                     child: const Text('Login'),
