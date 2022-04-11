@@ -1,3 +1,4 @@
+import 'package:abcde/authentication_screen/after_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,6 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
   String _email = '';
-
   String _password = '';
 
   final _auth = FirebaseAuth.instance;
@@ -27,56 +27,67 @@ class _RegistrationState extends State<Registration> {
       body: _isLoading == true
           ? const Center(child: LinearProgressIndicator())
           : SizedBox.expand(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextField(
-                    decoration:
-                        const InputDecoration(hintText: 'Enter your email'),
-                    onChanged: ((text) {
-                      _email = text;
-                    }),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    decoration:
-                        const InputDecoration(hintText: 'Enter your password'),
-                    onChanged: ((text) {
-                      _password = text;
-                    }),
-                    obscureText: true,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      if (_email == '' && _password != '') {
-                        const snackBar =
-                            SnackBar(content: Text('Please, enter email'));
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else if (_email != '' && _password == '') {
-                        const snackBar =
-                            SnackBar(content: Text('Please, enter password'));
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else if (_email == '' && _password == '') {
-                        const snackBar = SnackBar(
-                            content: Text('Please, enter email & password'));
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else {
-                        setState(() {
-                          _isLoading = true;
-                        });
-                      }
-                    },
-                    child: const Text('Registration'),
-                    color: Colors.blue,
-                  ),
-                ],
-              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              decoration:
+              const InputDecoration(hintText: 'Enter your email'),
+              onChanged: ((text) {
+                _email = text;
+              }),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextField(
+              decoration:
+              const InputDecoration(hintText: 'Enter your password'),
+              onChanged: ((text) {
+                _password = text;
+              }),
+              obscureText: true,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              onPressed: () async {
+                if (_email == '' && _password != '') {
+                  const snackBar =
+                  SnackBar(content: Text('Please, enter email'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else if (_email != '' && _password == '') {
+                  const snackBar =
+                  SnackBar(content: Text('Please, enter password'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else if (_email == '' && _password == '') {
+                  const snackBar = SnackBar(
+                      content: Text('Please, enter email & password'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {
+                  setState(() {
+                    _isLoading = true;
+                    print(_email);
+                    print(_password);
+                  });
+                }
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                      email: _email, password: _password);
+                  if(newUser != null) {
+                    Navigator.pushNamed(context, AfterAuth.pathId);
+                  }
+                } catch(e) {
+                  print(e);
+                }
+              },
+              child: const Text('Registration'),
+              color: Colors.blue,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
