@@ -59,15 +59,15 @@ class _PhoneLoginState extends State<PhoneLogin> {
               onPressed: () async {
                 if (_phoneNumber == '' && _smsCode != '') {
                   const snackBar =
-                  SnackBar(content: Text('Please, enter email'));
+                  SnackBar(content: Text('Please, enter phone'));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 } else if (_phoneNumber != '' && _smsCode == '') {
                   const snackBar =
-                  SnackBar(content: Text('Please, enter password'));
+                  SnackBar(content: Text('Please, enter sms code'));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 } else if (_phoneNumber == '' && _smsCode == '') {
                   const snackBar = SnackBar(
-                      content: Text('Please, enter email & password'));
+                      content: Text('Please, enter phone & sms code'));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 } else {
                   setState(() {
