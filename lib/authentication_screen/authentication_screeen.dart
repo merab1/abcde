@@ -1,5 +1,6 @@
 import 'package:abcde/authentication_screen/after_auth.dart';
 import 'package:abcde/authentication_screen/login_registration.dart';
+import 'package:abcde/authentication_screen/phone_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -44,7 +45,9 @@ class Auth extends StatelessWidget {
                 height: 10,
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, PhoneLogin.pathId);
+                },
                 child: const Text('Sign in with phone number'),
                 minWidth: 210,
                 color: Colors.blue,
