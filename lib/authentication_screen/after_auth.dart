@@ -79,6 +79,13 @@ class _AfterAuthState extends State<AfterAuth> {
       body: Center(
         child: Text(welcomeScreen),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlue,
+        onPressed: () {},
+        child: const Icon(Icons.add,
+        color: Colors.white,),
+
+      ),
     );
   }
 }
