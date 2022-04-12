@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         LoginRegistration.pathId: (context) => const LoginRegistration(),
         Login.pathId: (context) => const Login(),
         Registration.pathId: (context) => const Registration(),
-        AfterAuth.pathId: (context) => const AfterAuth(),
+        AfterAuth.pathId: (context) => AfterAuth(),
         PhoneLogin.pathId: (context) => const PhoneLogin(),
         SmsCode.pathId: (context) => const SmsCode(),
       },
