@@ -3,6 +3,7 @@ import 'package:abcde/authentication_screen/login.dart';
 import 'package:abcde/authentication_screen/login_registration.dart';
 import 'package:abcde/authentication_screen/phone_login.dart';
 import 'package:abcde/authentication_screen/registration.dart';
+import 'package:abcde/authentication_screen/sms_code.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         Registration.pathId: (context) => const Registration(),
         AfterAuth.pathId: (context) => const AfterAuth(),
         PhoneLogin.pathId: (context) => const PhoneLogin(),
+        SmsCode.pathId: (context) => const SmsCode(),
       },
     );
   }
