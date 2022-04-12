@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class PhotosPage extends StatelessWidget {
   const PhotosPage({Key? key}) : super(key: key);
@@ -6,8 +6,13 @@ class PhotosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Photos page'),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Photos'),),
+    );
+  }
+  Widget myCard(BuildContext context) {
+    return Card(
+      //child: ,
     );
   }
 }
