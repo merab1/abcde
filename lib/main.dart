@@ -1,6 +1,7 @@
 import 'package:abcde/authentication_screen/after_auth.dart';
 import 'package:abcde/authentication_screen/login.dart';
 import 'package:abcde/authentication_screen/login_registration.dart';
+import 'package:abcde/authentication_screen/pages/photos_page.dart';
 import 'package:abcde/authentication_screen/phone_login.dart';
 import 'package:abcde/authentication_screen/registration.dart';
 import 'package:abcde/authentication_screen/sms_code.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         AfterAuth.pathId: (context) => AfterAuth(),
         PhoneLogin.pathId: (context) => const PhoneLogin(),
         SmsCode.pathId: (context) => const SmsCode(),
+        PhotosPage.pathId: (context) => const PhotosPage(),
       },
     );
   }

@@ -1,3 +1,4 @@
+import 'package:abcde/authentication_screen/pages/photos_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -81,7 +82,9 @@ class _AfterAuthState extends State<AfterAuth> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, PhotosPage.pathId);
+        },
         child: const Icon(Icons.add,
         color: Colors.white,),
 
