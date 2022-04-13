@@ -15,9 +15,9 @@ class PhotosService {
     }
   }
 
-  Future<PhotosModel> getPhotos(String query) async {
+  Future<PhotosModel> getPhotos({String? query}) async {
     final photosData = await getData(
-        '$appUrl?&app_key=$MY_API_KEY&q=$query');
+        '$appUrl?&key=$MY_API_KEY&q=$query');
     return photosData;
   }
 }

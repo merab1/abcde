@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         AfterAuth.pathId: (context) => AfterAuth(),
         PhoneLogin.pathId: (context) => const PhoneLogin(),
         SmsCode.pathId: (context) => const SmsCode(),
-        PhotosPage.pathId: (context) => const PhotosPage(),
+        PhotosPage.pathId: (context) => PhotosPage(),
       },
     );
   }

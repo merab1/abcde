@@ -1,11 +1,14 @@
+import 'dart:convert';
+
 import 'package:abcde/services/photos_model.dart';
 import 'package:abcde/services/photos_service.dart';
 import 'package:abcde/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
 class PhotosPage extends StatelessWidget {
-  const PhotosPage({Key? key}) : super(key: key);
+   PhotosPage({Key? key}) : super(key: key);
   static const String pathId = 'Photos page';
+  List<PhotosModel> photosList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class PhotosPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(children: [
-          _getProductTypeList(photosData),
+          _getProductTypeList(),
         ]),
       ),
     );
@@ -28,9 +31,9 @@ class PhotosPage extends StatelessWidget {
     return photoCard(productType);
   }
 
-  Widget _buildList(BuildContext context, List<PhotosModel>? snapshot) {
+  Widget _buildList(BuildContext context, List<PhotosModel> snapshot) {
     return ListView.builder(
-      itemCount: snapshot!.length,
+      itemCount: snapshot.length,
       itemBuilder: (context, index) {
         return _buildListItem(context, snapshot, index);
       },
@@ -41,19 +44,25 @@ class PhotosPage extends StatelessWidget {
   }
 
 
-  Widget _getProductTypeList(PhotosService photosService) {
+  Widget _getProductTypeList() {
     return Expanded(
       child: FutureBuilder<PhotosModel>(
-        future: photosService.getPhotos(query),
+        future: getPhotosData(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
               child: LinearProgressIndicator(),
             );
           }
-          return _buildList(context, snapshot);
+          return _buildList(context, photosList);
         },
       ),
     );
+  }
+
+  Future<PhotosModel> getPhotosData(/*String query*/) async {
+    final photosJson = await PhotosService().getPhotos();
+    final photosMap = json.decode(photosJson.toString());
+    return PhotosModel.fromJson(photosMap);
   }
 }
