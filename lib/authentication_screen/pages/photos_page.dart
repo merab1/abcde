@@ -19,15 +19,15 @@ class PhotosPage extends StatelessWidget {
       ),
     );
   }
-  Widget _buildListItem(BuildContext context, DocumentSnapshot snapshot) {
-    final productType = PhotosModel(url: url).fromSnapshot(snapshot);
-    return photoCard(productType.title, productType.url);
+  Widget _buildListItem(BuildContext context, List<PhotosModel> snapshot, int index) {
+    final productType = snapshot[index].url;
+    return photoCard(productType);
   }
 
   Widget _buildList(BuildContext context, List<PhotosModel>? snapshot) {
     return ListView.builder(
       itemCount: snapshot!
-          .map((data) => _buildListItem(context, data))
+          .map((data) => _buildListItem(context, data,))
           .toList()
           .length,
       itemBuilder: (context, index) {
@@ -44,8 +44,8 @@ class PhotosPage extends StatelessWidget {
 
   Widget _getProductTypeList(PhotosService photosService) {
     return Expanded(
-      child: StreamBuilder<PhotosModel>(
-        stream: photosService.getPhotos(query, from, to),
+      child: FutureBuilder<PhotosModel>(
+        future: photosService.getPhotos(query, from, to),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
