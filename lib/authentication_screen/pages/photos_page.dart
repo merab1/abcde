@@ -10,7 +10,9 @@ class PhotosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Photos'),),
+      appBar: AppBar(
+        title: const Text('Photos'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(children: [
@@ -19,22 +21,18 @@ class PhotosPage extends StatelessWidget {
       ),
     );
   }
-  Widget _buildListItem(BuildContext context, List<PhotosModel> snapshot, int index) {
+
+  Widget _buildListItem(
+      BuildContext context, List<PhotosModel> snapshot, int index) {
     final productType = snapshot[index].url;
     return photoCard(productType);
   }
 
   Widget _buildList(BuildContext context, List<PhotosModel>? snapshot) {
     return ListView.builder(
-      itemCount: snapshot!
-          .map((data) => _buildListItem(context, data,))
-          .toList()
-          .length,
+      itemCount: snapshot!.length,
       itemBuilder: (context, index) {
-        return _buildListItem(
-          context,
-          snapshot[index],
-        );
+        return _buildListItem(context, snapshot, index);
       },
     );
 /*    return ListView(
