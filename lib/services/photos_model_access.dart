@@ -1,4 +1,4 @@
-class PhotosModelAccess {
+/*class PhotosModelAccess {
 
 Future<dynamic> getPhotos() async {
 
@@ -6,4 +6,4 @@ Future<dynamic> getPhotos() async {
 
 
 
-}
+}*/
