@@ -40,6 +40,7 @@ class PhotosPage extends StatelessWidget {
     );*/
   }
 
+
   Widget _getProductTypeList(PhotosService photosService) {
     return Expanded(
       child: FutureBuilder<PhotosModel>(

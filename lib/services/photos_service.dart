@@ -1,3 +1,4 @@
+import 'package:abcde/services/photos_model.dart';
 import 'package:http/http.dart';
 
 const MY_API_KEY = '26711456-bde74f403cb42e77029bc1678';
@@ -14,7 +15,7 @@ class PhotosService {
     }
   }
 
-  Future<dynamic> getPhotos(String query) async {
+  Future<PhotosModel> getPhotos(String query) async {
     final photosData = await getData(
         '$appUrl?&app_key=$MY_API_KEY&q=$query');
     return photosData;
