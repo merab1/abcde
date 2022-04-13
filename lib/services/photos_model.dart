@@ -1,11 +1,20 @@
 class PhotosModel {
-  String url;
+  String previewURL;
 
-  PhotosModel({required this.url});
+  PhotosModel({required this.previewURL});
 
   factory PhotosModel.fromJson(Map<dynamic, dynamic> json) => PhotosModel(
-        url: json['pageURL'] as String,
+        previewURL: json['previewURL'] as String,
       );
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{'previewURL': previewURL};
+  }
+
+/*  @override
+  String toString() {
+    return 'PhotosModel{url: $previewURL}';
+  }*/
 /*factory PhotosModel.fromJson(Map<String, dynamic> json) {
   return PhotosModel(url: json['url'] as String);
 }*/

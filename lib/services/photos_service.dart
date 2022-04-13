@@ -18,6 +18,8 @@ class PhotosService {
   Future<PhotosModel> getPhotos({String? query}) async {
     final photosData = await getData(
         '$appUrl?&key=$MY_API_KEY&q=$query');
+    print('this is photos data: $photosData');
     return photosData;
+
   }
 }

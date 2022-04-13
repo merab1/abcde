@@ -10,6 +10,7 @@ class PhotosPage extends StatelessWidget {
   static const String pathId = 'Photos page';
   List<PhotosModel> photosList = [];
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +27,16 @@ class PhotosPage extends StatelessWidget {
   }
 
   Widget _buildListItem(
-      BuildContext context, List<PhotosModel> snapshot, int index) {
-    final productType = snapshot[index].url;
-    return photoCard(productType);
+      BuildContext context, AsyncSnapshot<dynamic> snapshot, int index) {
+    final photoItem = snapshot.data[index].previewURL;
+    print('photoItem is $photoItem');
+    return photoCard(photoItem);
   }
 
-  Widget _buildList(BuildContext context, List<PhotosModel> snapshot) {
+  Widget _buildList(BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    var values = snapshot.data;
     return ListView.builder(
-      itemCount: snapshot.length,
+    //  itemCount: snapshot.length,
       itemBuilder: (context, index) {
         return _buildListItem(context, snapshot, index);
       },
@@ -42,27 +45,27 @@ class PhotosPage extends StatelessWidget {
       children: snapshot!.map((data) => _buildListItem(context, data)).toList(),
     );*/
   }
-
-
+//PhotosModel photosModel = PhotosModel();
+PhotosService photosService = PhotosService();
   Widget _getProductTypeList() {
     return Expanded(
       child: FutureBuilder<PhotosModel>(
-        future: getPhotosData(),
+        future: photosService.getPhotos(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: LinearProgressIndicator(),
             );
           }
-          return _buildList(context, photosList);
+          return _buildList(context, snapshot);
         },
       ),
     );
   }
 
-  Future<PhotosModel> getPhotosData(/*String query*/) async {
+/*  Future<PhotosModel> getPhotosData(String query) async {
     final photosJson = await PhotosService().getPhotos();
     final photosMap = json.decode(photosJson.toString());
     return PhotosModel.fromJson(photosMap);
-  }
+  }*/
 }
