@@ -43,14 +43,14 @@ class PhotosPage extends StatelessWidget {
   Widget _getProductTypeList(PhotosService photosService) {
     return Expanded(
       child: FutureBuilder<PhotosModel>(
-        future: photosService.getPhotos(query, from, to),
+        future: photosService.getPhotos(query),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
               child: LinearProgressIndicator(),
             );
           }
-          return _buildList(context, snapshot.data!.docs);
+          return _buildList(context, snapshot);
         },
       ),
     );

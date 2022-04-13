@@ -14,9 +14,9 @@ class PhotosService {
     }
   }
 
-  Future<dynamic> getPhotos(String query, int from, int to) async {
+  Future<dynamic> getPhotos(String query) async {
     final photosData = await getData(
-        '$appUrl?&app_key=$MY_API_KEY&q=$query&from=$from&to=$to');
+        '$appUrl?&app_key=$MY_API_KEY&q=$query');
     return photosData;
   }
 }
