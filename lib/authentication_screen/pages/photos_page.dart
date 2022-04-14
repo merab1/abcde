@@ -38,7 +38,7 @@ class _PhotosPageState extends State<PhotosPage> {
 
   Widget _buildListItem(
       BuildContext context, AsyncSnapshot<dynamic> snapshot, int index) {
-    final photoItem = snapshot.data[index].previewURL;
+    final photoItem = snapshot.data[index].webformatURL;
     print('photoItem is $photoItem');
     return photoCard(context, photoItem);
   }

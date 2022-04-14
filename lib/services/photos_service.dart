@@ -31,9 +31,9 @@ String? query;
 }
 
 class PhotosModel {
-  String previewURL;
+  String webformatURL;
 
-  PhotosModel({required this.previewURL});
+  PhotosModel({required this.webformatURL});
 
   factory PhotosModel.fromJson(Map<dynamic, dynamic> json) =>
       _commentFromJson(json);
@@ -43,11 +43,11 @@ class PhotosModel {
 
 PhotosModel _commentFromJson(Map<dynamic, dynamic> json) {
   return PhotosModel(
-    previewURL: json['previewURL'],
+    webformatURL: json['webformatURL'],
   );
 }
 
 Map<dynamic, dynamic> photosModelToJson(PhotosModel instance) =>
     <dynamic, dynamic>{
-      'previewURL': instance.previewURL,
+      'webformatURL': instance.webformatURL,
     };
