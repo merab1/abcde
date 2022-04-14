@@ -1,6 +1,7 @@
 import 'package:abcde/authentication_screen/pages/photos_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AfterAuth extends StatefulWidget {
   AfterAuth({Key? key}) : super(key: key);
@@ -11,6 +12,12 @@ class AfterAuth extends StatefulWidget {
 
 class _AfterAuthState extends State<AfterAuth> {
   String welcomeScreen = 'Welcome to the club';
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //final prefs = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +85,8 @@ class _AfterAuthState extends State<AfterAuth> {
         ),
       ),
       body: Center(
-        child: Text(welcomeScreen),
+
+        child: /*isAddressEmpty ?*/ Text(welcomeScreen)/* : Image(image: NetworkImage(prefs.getString('urlAddress');))*/,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue,
@@ -91,4 +99,14 @@ class _AfterAuthState extends State<AfterAuth> {
       ),
     );
   }
+bool isAddressEmpty = true;
+  void internalMemory() async {
+    final prefs = await SharedPreferences.getInstance();
+    var address = prefs.getString('urlAddress');
+    if(address!.isNotEmpty) {
+      isAddressEmpty = false;
+    }
+
+  }
+
 }
