@@ -18,6 +18,7 @@ class _AfterAuthState extends State<AfterAuth> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    internalMemory();
     //final prefs = await SharedPreferences.getInstance();
   }
 
@@ -97,8 +98,9 @@ class _AfterAuthState extends State<AfterAuth> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue,
-        onPressed: () {
-          Navigator.pushNamed(context, PhotosPage.pathId);
+        onPressed: () async {
+          await Navigator.pushNamed(context, PhotosPage.pathId);
+          internalMemory();
         },
         child: const Icon(
           Icons.add,
@@ -112,10 +114,7 @@ class _AfterAuthState extends State<AfterAuth> {
 
   internalMemory() async {
     final prefs = await SharedPreferences.getInstance();
-    address = prefs.getString('urlAddress')!;
-/*    if(address!.isNotEmpty) {
-      isAddressEmpty = false;
-    }*/
-    return address;
+    address = await prefs.getString('urlAddress')!;
+    setState((){});
   }
 }
