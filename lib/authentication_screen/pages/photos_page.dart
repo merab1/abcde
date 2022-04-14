@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 import '../../services/photos_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class PhotosPage extends StatefulWidget {
   const PhotosPage({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class _PhotosPageState extends State<PhotosPage> {
       BuildContext context, AsyncSnapshot<dynamic> snapshot, int index) {
     final photoItem = snapshot.data[index].previewURL;
     print('photoItem is $photoItem');
-    return photoCard(photoItem);
+    return photoCard(context, photoItem);
   }
 
   Widget _buildList(BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -68,10 +70,14 @@ class _PhotosPageState extends State<PhotosPage> {
   }
 }
 
-Widget photoCard(String url) {
+Widget photoCard(BuildContext context, String url) {
   return GestureDetector(
-    onTap: () {
-
+    onTap: () async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('urlAddress', url);
+      const snackBar =
+      SnackBar(content: Text('You saved image'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     child: Card(
       child: Image(
