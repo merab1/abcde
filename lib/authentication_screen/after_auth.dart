@@ -91,7 +91,7 @@ class _AfterAuthState extends State<AfterAuth> {
       ),
       body: Center(
         child: Stack(
-
+          alignment: Alignment.topCenter,
           children: [
             Container(
               decoration: BoxDecoration(
@@ -102,8 +102,25 @@ class _AfterAuthState extends State<AfterAuth> {
               ),
 
             ),
-            Text(welcomeScreen),
-            const SizedBox(height: 20,),
+            Container(
+              height: 50,
+              color: const Color.fromARGB(200, 230, 242, 255),
+            ),
+            Column(
+              children: [
+                const SizedBox(
+                  height: 11,
+                ),
+                Text(
+                  welcomeScreen,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 20, 60, 120),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
 
