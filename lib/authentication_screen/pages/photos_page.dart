@@ -31,7 +31,7 @@ class _PhotosPageState extends State<PhotosPage> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(children: [
-          _getProductTypeList(),
+          _getPhotoList(),
         ]),
       ),
     );
@@ -54,7 +54,7 @@ class _PhotosPageState extends State<PhotosPage> {
     );
   }
 
-  Widget _getProductTypeList() {
+  Widget _getPhotoList() {
     return Expanded(
       child: FutureBuilder(
         future: photosService.getPhotos(),
