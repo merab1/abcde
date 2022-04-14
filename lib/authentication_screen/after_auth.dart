@@ -1,4 +1,6 @@
+import 'package:abcde/authentication_screen/my_widgets/dialog_widget.dart';
 import 'package:abcde/authentication_screen/pages/photos_page.dart';
+import 'package:abcde/services/photos_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -100,7 +102,6 @@ class _AfterAuthState extends State<AfterAuth> {
                   fit: BoxFit.cover,
                 ),
               ),
-
             ),
             Container(
               height: 50,
@@ -123,13 +124,18 @@ class _AfterAuthState extends State<AfterAuth> {
             ),
           ],
         ),
-
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue,
         onPressed: () async {
           await Navigator.pushNamed(context, PhotosPage.pathId);
           internalMemory();
+          PhotosService photosService = PhotosService();
+         // String url =
+          var data = await photosService.getPhotos();
+          if (data == null) {
+            return customAlertDialog(context);
+          }
         },
         child: const Icon(
           Icons.add,
@@ -144,6 +150,6 @@ class _AfterAuthState extends State<AfterAuth> {
   internalMemory() async {
     final prefs = await SharedPreferences.getInstance();
     address = await prefs.getString('urlAddress')!;
-    setState((){});
+    setState(() {});
   }
 }
