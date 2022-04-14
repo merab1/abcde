@@ -69,9 +69,14 @@ class _PhotosPageState extends State<PhotosPage> {
 }
 
 Widget photoCard(String url) {
-  return Card(
-    child: Image(
-      image: NetworkImage(url),
+  return GestureDetector(
+    onTap: () {
+
+    },
+    child: Card(
+      child: Image(
+        image: NetworkImage(url),
+      ),
     ),
   );
 }
