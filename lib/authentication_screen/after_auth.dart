@@ -1,4 +1,4 @@
-import 'package:abcde/authentication_screen/my_widgets/dialog_widget.dart';
+import 'package:abcde/widgets/dialog_widget.dart';
 import 'package:abcde/authentication_screen/pages/photos_page.dart';
 import 'package:abcde/services/photos_service.dart';
 import 'package:flutter/cupertino.dart';
