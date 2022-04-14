@@ -37,12 +37,15 @@ class _PhoneLoginState extends State<PhoneLogin> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              keyboardType: TextInputType.phone,
-              decoration: const InputDecoration(hintText: 'Verify your phone'),
-              onChanged: ((text) {
-                _phoneNumber = text;
-              }),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(hintText: 'Verify your phone'),
+                onChanged: ((text) {
+                  _phoneNumber = text;
+                }),
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -97,13 +100,16 @@ class _PhoneLoginState extends State<PhoneLogin> {
             const SizedBox(
               height: 20,
             ),
-            TextField(
-              keyboardType: TextInputType.number,
-              decoration:
-                  const InputDecoration(hintText: 'Enter your  sms code'),
-              onChanged: ((text) {
-                _smsCode = text;
-              }),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                keyboardType: TextInputType.number,
+                decoration:
+                    const InputDecoration(hintText: 'Enter your  sms code',),
+                onChanged: ((text) {
+                  _smsCode = text;
+                }),
+              ),
             ),
             const SizedBox(
               height: 20,

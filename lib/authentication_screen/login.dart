@@ -33,24 +33,30 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    decoration:
-                        const InputDecoration(hintText: 'Enter your email'),
-                    onChanged: ((text) {
-                      _email = text;
-                    }),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration:
+                          const InputDecoration(hintText: 'Enter your email'),
+                      onChanged: ((text) {
+                        _email = text;
+                      }),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  TextField(
-                    decoration:
-                        const InputDecoration(hintText: 'Enter your password'),
-                    onChanged: ((text) {
-                      _password = text;
-                    }),
-                    obscureText: true,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      decoration:
+                          const InputDecoration(hintText: 'Enter your password'),
+                      onChanged: ((text) {
+                        _password = text;
+                      }),
+                      obscureText: true,
+                    ),
                   ),
                   const SizedBox(
                     height: 20,

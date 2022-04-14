@@ -131,7 +131,7 @@ class _AfterAuthState extends State<AfterAuth> {
           await Navigator.pushNamed(context, PhotosPage.pathId);
           internalMemory();
           PhotosService photosService = PhotosService();
-         // String url =
+          // String url =
           var data = await photosService.getPhotos();
           if (data == null) {
             return customAlertDialog(context);
