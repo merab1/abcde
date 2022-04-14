@@ -6,12 +6,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AfterAuth extends StatefulWidget {
   AfterAuth({Key? key}) : super(key: key);
   static const String pathId = 'Welcome Page';
+
   @override
   State<AfterAuth> createState() => _AfterAuthState();
 }
 
 class _AfterAuthState extends State<AfterAuth> {
   String welcomeScreen = 'Welcome to the club';
+
   @override
   void initState() {
     // TODO: implement initState
@@ -37,7 +39,9 @@ class _AfterAuthState extends State<AfterAuth> {
               child: Text('Welcome'),
             ),
             ListTile(
-              title: const Text('Bonjour',),
+              title: const Text(
+                'Bonjour',
+              ),
               onTap: () {
                 setState(() {
                   welcomeScreen = 'Bonjour';
@@ -85,28 +89,33 @@ class _AfterAuthState extends State<AfterAuth> {
         ),
       ),
       body: Center(
-
-        child: /*isAddressEmpty ?*/ Text(welcomeScreen)/* : Image(image: NetworkImage(prefs.getString('urlAddress');))*/,
+        child: address == ''
+            ? Text(welcomeScreen)
+            : Image(
+                image: NetworkImage(address),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue,
         onPressed: () {
           Navigator.pushNamed(context, PhotosPage.pathId);
         },
-        child: const Icon(Icons.add,
-        color: Colors.white,),
-
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
-bool isAddressEmpty = true;
-  void internalMemory() async {
+
+  String address = '';
+
+  internalMemory() async {
     final prefs = await SharedPreferences.getInstance();
-    var address = prefs.getString('urlAddress');
-    if(address!.isNotEmpty) {
+    address = prefs.getString('urlAddress')!;
+/*    if(address!.isNotEmpty) {
       isAddressEmpty = false;
-    }
-
+    }*/
+    return address;
   }
-
 }
