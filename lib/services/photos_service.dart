@@ -11,7 +11,11 @@ class PhotosService {
     final response = await get(Uri.parse(url));
     if (response.statusCode == 200) {
       return response.body;
-    } else {
+    } else if (response.statusCode == 12163){
+      print('The Internet connection has been lost.');
+      return response.body;
+    }
+    else {
       print(response.statusCode);
     }
   }
