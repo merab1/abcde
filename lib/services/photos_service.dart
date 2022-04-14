@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:abcde/services/photos_model.dart';
 import 'package:http/http.dart';
 
@@ -14,12 +16,17 @@ class PhotosService {
       print(response.statusCode);
     }
   }
-
-  Future<PhotosModel> getPhotos({String? query}) async {
+ List<PhotosModel> dataList = [];
+  Future<List<PhotosModel>> getPhotos({String? query}) async {
     final photosData = await getData(
         '$appUrl?&key=$MY_API_KEY&q=$query');
+    var data =json.decode(photosData);
+    data.forEach((element) {
+dataList.add(PhotosModel.fromJson(element));
+    });
+
     print('this is photos data: $photosData');
-    return photosData;
+    return dataList;
 
   }
 }

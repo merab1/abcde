@@ -5,11 +5,23 @@ import 'package:abcde/services/photos_service.dart';
 import 'package:abcde/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
-class PhotosPage extends StatelessWidget {
+class PhotosPage extends StatefulWidget {
    PhotosPage({Key? key}) : super(key: key);
   static const String pathId = 'Photos page';
-  List<PhotosModel> photosList = [];
 
+  @override
+  State<PhotosPage> createState() => _PhotosPageState();
+}
+
+class _PhotosPageState extends State<PhotosPage> {
+  PhotosService photosService = PhotosService();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+photosService.getPhotos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +57,14 @@ class PhotosPage extends StatelessWidget {
       children: snapshot!.map((data) => _buildListItem(context, data)).toList(),
     );*/
   }
+
 //PhotosModel photosModel = PhotosModel();
-PhotosService photosService = PhotosService();
+
   Widget _getProductTypeList() {
     return Expanded(
-      child: FutureBuilder<PhotosModel>(
+      child: FutureBuilder(
         future: photosService.getPhotos(),
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: LinearProgressIndicator(),
@@ -62,10 +75,4 @@ PhotosService photosService = PhotosService();
       ),
     );
   }
-
-/*  Future<PhotosModel> getPhotosData(String query) async {
-    final photosJson = await PhotosService().getPhotos();
-    final photosMap = json.decode(photosJson.toString());
-    return PhotosModel.fromJson(photosMap);
-  }*/
 }
