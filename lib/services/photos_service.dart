@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:abcde/services/photos_model.dart';
 import 'package:http/http.dart';
 
-const MY_API_KEY = '26711456-bde74f403cb42e77029bc1678';
+const apiKey = '26711456-bde74f403cb42e77029bc1678';
 const appUrl = 'https://pixabay.com/api/';
 
 class PhotosService {
@@ -16,17 +15,39 @@ class PhotosService {
       print(response.statusCode);
     }
   }
- List<PhotosModel> dataList = [];
-  Future<List<PhotosModel>> getPhotos({String? query}) async {
-    final photosData = await getData(
-        '$appUrl?&key=$MY_API_KEY&q=$query');
-    var data =json.decode(photosData);
-    data.forEach((element) {
-dataList.add(PhotosModel.fromJson(element));
+String? query;
+  List<PhotosModel> dataList = [];
+  Future<List<PhotosModel>> getPhotos() async {
+    final photosData = await getData('$appUrl?key=$apiKey&q=$query');
+    var data = json.decode(photosData);
+    var items = data["hits"];
+    items.forEach((element) {
+      dataList.add(PhotosModel.fromJson(element));
     });
 
     print('this is photos data: $photosData');
     return dataList;
-
   }
 }
+
+class PhotosModel {
+  String previewURL;
+
+  PhotosModel({required this.previewURL});
+
+  factory PhotosModel.fromJson(Map<dynamic, dynamic> json) =>
+      _commentFromJson(json);
+
+  Map<dynamic, dynamic> toJson() => photosModelToJson(this);
+}
+
+PhotosModel _commentFromJson(Map<dynamic, dynamic> json) {
+  return PhotosModel(
+    previewURL: json['previewURL'],
+  );
+}
+
+Map<dynamic, dynamic> photosModelToJson(PhotosModel instance) =>
+    <dynamic, dynamic>{
+      'previewURL': instance.previewURL,
+    };

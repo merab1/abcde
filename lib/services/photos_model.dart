@@ -3,14 +3,15 @@ class PhotosModel {
 
   PhotosModel({required this.previewURL});
 
-/*  factory PhotosModel.fromJson(Map<dynamic, dynamic> json) => PhotosModel(
+  factory PhotosModel.fromJson(Map<String, dynamic> json) =>
+      PhotosModel(
         previewURL: json['previewURL'] as String,
       );
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{'previewURL': previewURL};
-  }*/
-
+  }
+}
 /*  @override
   String toString() {
     return 'PhotosModel{url: $previewURL}';
@@ -19,13 +20,13 @@ class PhotosModel {
   return PhotosModel(url: json['url'] as String);
 }*/
 
-  factory PhotosModel.fromJson(Map<dynamic, dynamic> json) =>
-      _commentFromJson(json);
+/*  factory PhotosModel.fromJson(Map<dynamic, dynamic> json) =>
+      photosModelFromJson(json);
 
   Map<dynamic, dynamic> toJson() => photosModelToJson(this);
 }
 
-PhotosModel _commentFromJson(Map<dynamic, dynamic> json) {
+PhotosModel photosModelFromJson(Map<dynamic, dynamic> json) {
   return PhotosModel(
     previewURL: json['previewURL'],
   );
@@ -33,4 +34,4 @@ PhotosModel _commentFromJson(Map<dynamic, dynamic> json) {
 
 Map<dynamic, dynamic> photosModelToJson(PhotosModel instance) => <dynamic, dynamic>{
   'previewURL': instance.previewURL,
-};
+};*/
