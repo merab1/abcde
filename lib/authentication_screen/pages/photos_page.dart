@@ -78,6 +78,7 @@ Widget photoCard(BuildContext context, String url) {
       const snackBar =
       SnackBar(content: Text('You saved image'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      Navigator.pop(context, prefs.getString('urlAddress'));
     },
     child: Card(
       child: Image(
