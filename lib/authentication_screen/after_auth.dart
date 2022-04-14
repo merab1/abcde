@@ -90,11 +90,23 @@ class _AfterAuthState extends State<AfterAuth> {
         ),
       ),
       body: Center(
-        child: address == ''
-            ? Text(welcomeScreen)
-            : Image(
-                image: NetworkImage(address),
+        child: Stack(
+
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(address),
+                  fit: BoxFit.cover,
+                ),
               ),
+
+            ),
+            Text(welcomeScreen),
+            const SizedBox(height: 20,),
+          ],
+        ),
+
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue,
