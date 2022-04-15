@@ -33,7 +33,9 @@ class _RegistrationState extends State<Registration> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextField(
-              inputText: _email,
+              onChanged: (value) {
+                _email = value;
+              },
               isEmailTextField: true,
               isPassword: false,
               isPhoneNumber: false,
@@ -47,7 +49,9 @@ class _RegistrationState extends State<Registration> {
               isPhoneNumber: false,
               isPassword: true,
               isEmailTextField: false,
-              inputText: _password,
+              onChanged: (value) {
+                _password = value;
+              },
             ),
             const SizedBox(
               height: 20,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
   // final String hintText;
-  String inputText;
+  Function onChanged;
   final bool isEmailTextField;
   final bool isPhoneNumber;
   final bool isPassword;
@@ -10,7 +10,7 @@ class CustomTextField extends StatefulWidget {
 
   CustomTextField({
     //  required this.hintText,
-    required this.inputText,
+    required this.onChanged,
     required this.isEmailTextField,
     required this.isPassword,
     required this.isPhoneNumber,
@@ -52,7 +52,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           : null,
         ),
         onChanged: ((text) {
-          widget.inputText = text;
+          widget.onChanged(text);
         }),
       ),
     );

@@ -40,7 +40,9 @@ class _PhoneLoginState extends State<PhoneLogin> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextField(
-              inputText: _phoneNumber,
+              onChanged: (value) {
+                _phoneNumber = value;
+              },
               isEmailTextField: false,
               isPassword: false,
               isPhoneNumber: true,
@@ -103,7 +105,9 @@ class _PhoneLoginState extends State<PhoneLogin> {
               height: 20,
             ),
             CustomTextField(
-              inputText: _smsCode,
+              onChanged: (value) {
+                _smsCode = value;
+              },
               isEmailTextField: false,
               isPassword: false,
               isPhoneNumber: false,

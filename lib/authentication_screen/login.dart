@@ -35,7 +35,9 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomTextField(
-                    inputText: _email,
+                    onChanged: (value) {
+                      _email = value;
+                    },
                     isEmailTextField: true,
                     isPassword: false,
                     isPhoneNumber: false,
@@ -49,7 +51,9 @@ class _LoginState extends State<Login> {
                     isPhoneNumber: false,
                     isPassword: true,
                     isEmailTextField: false,
-                    inputText: _password,
+                    onChanged: (value) {
+                      _password = value;
+                    },
                   ),
                   const SizedBox(
                     height: 20,
