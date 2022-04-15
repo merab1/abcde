@@ -2,6 +2,8 @@ import 'package:abcde/authentication_screen/after_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_textfield.dart';
+
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
   static const String pathId = 'Registration';
@@ -30,30 +32,22 @@ class _RegistrationState extends State<Registration> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                keyboardType: TextInputType.emailAddress,
-                decoration:
-                const InputDecoration(hintText: 'Enter your email'),
-                onChanged: ((text) {
-                  _email = text;
-                }),
-              ),
+            CustomTextField(
+              inputText: _email,
+              isEmailTextField: true,
+              isPassword: false,
+              isPhoneNumber: false,
+              isSmsCode: false,
             ),
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                decoration:
-                const InputDecoration(hintText: 'Enter your password'),
-                onChanged: ((text) {
-                  _password = text;
-                }),
-                obscureText: true,
-              ),
+            CustomTextField(
+              isSmsCode: false,
+              isPhoneNumber: false,
+              isPassword: true,
+              isEmailTextField: false,
+              inputText: _password,
             ),
             const SizedBox(
               height: 20,

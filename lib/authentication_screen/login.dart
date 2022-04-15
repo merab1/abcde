@@ -1,4 +1,5 @@
 import 'package:abcde/authentication_screen/after_auth.dart';
+import 'package:abcde/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -33,30 +34,22 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration:
-                          const InputDecoration(hintText: 'Enter your email'),
-                      onChanged: ((text) {
-                        _email = text;
-                      }),
-                    ),
+                  CustomTextField(
+                    inputText: _email,
+                    isEmailTextField: true,
+                    isPassword: false,
+                    isPhoneNumber: false,
+                    isSmsCode: false,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: TextField(
-                      decoration:
-                          const InputDecoration(hintText: 'Enter your password'),
-                      onChanged: ((text) {
-                        _password = text;
-                      }),
-                      obscureText: true,
-                    ),
+                  CustomTextField(
+                    isSmsCode: false,
+                    isPhoneNumber: false,
+                    isPassword: true,
+                    isEmailTextField: false,
+                    inputText: _password,
                   ),
                   const SizedBox(
                     height: 20,
@@ -85,10 +78,9 @@ class _LoginState extends State<Login> {
                       try {
                         final user = await _auth.signInWithEmailAndPassword(
                             email: _email, password: _password);
-                        if(user != null) {
+                        if (user != null) {
                           Navigator.pushNamed(context, AfterAuth.pathId);
                         }
-
                       } catch (e) {
                         print(e);
                       }

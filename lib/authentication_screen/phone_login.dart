@@ -3,6 +3,8 @@ import 'package:abcde/authentication_screen/sms_code.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../widgets/custom_textfield.dart';
+
 /*enum MobileVerificationState {
   SHOW_MOBILE_FORM_STATE,
   SHOW_OTP_FORM_STATE,
@@ -37,15 +39,12 @@ class _PhoneLoginState extends State<PhoneLogin> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(hintText: 'Verify your phone'),
-                onChanged: ((text) {
-                  _phoneNumber = text;
-                }),
-              ),
+            CustomTextField(
+              inputText: _phoneNumber,
+              isEmailTextField: false,
+              isPassword: false,
+              isPhoneNumber: true,
+              isSmsCode: false,
             ),
             const SizedBox(
               height: 20,
@@ -103,16 +102,12 @@ class _PhoneLoginState extends State<PhoneLogin> {
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(hintText: 'Enter your  sms code',),
-                onChanged: ((text) {
-                  _smsCode = text;
-                }),
-              ),
+            CustomTextField(
+              inputText: _smsCode,
+              isEmailTextField: false,
+              isPassword: false,
+              isPhoneNumber: false,
+              isSmsCode: true,
             ),
             const SizedBox(
               height: 20,
