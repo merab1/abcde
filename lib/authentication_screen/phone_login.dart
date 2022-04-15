@@ -75,14 +75,15 @@ class _PhoneLoginState extends State<PhoneLogin> {
                         (PhoneAuthCredential phoneAuthCredential) async {
                       await _auth.signInWithCredential(phoneAuthCredential);
                     },
-                    codeSent: (String verificationId,
-                        int? forceResendingToken) async {
-                      String smsCode = _smsCode;
-                      PhoneAuthCredential credential =
-                          PhoneAuthProvider.credential(
-                              verificationId: verificationId, smsCode: smsCode);
-                      await _auth.signInWithCredential(credential);
-                    },
+                      codeSent: (String verificationIdFromFirebase,
+                          int? forceResendingToken) async {
+                        verificationId = verificationIdFromFirebase;
+                        String smsCode = _smsCode;
+                        PhoneAuthCredential credential =
+                        PhoneAuthProvider.credential(
+                            verificationId: verificationId, smsCode: smsCode);
+                        await _auth.signInWithCredential(credential);
+                      },
 
                     verificationFailed: (FirebaseAuthException error) {
                       if (error.code == 'invalid-phone-number') {
