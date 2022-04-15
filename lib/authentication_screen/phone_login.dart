@@ -58,6 +58,8 @@ class _PhoneLoginState extends State<PhoneLogin> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 } else {
                   print(_phoneNumber);
+                  const snackBar = SnackBar(content: Text('Wait for the SMS'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 /*                  setState(() {
                     _isLoading = true;
                     print(_phoneNumber);
