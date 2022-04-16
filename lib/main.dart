@@ -10,7 +10,15 @@ import 'package:flutter/material.dart';
 
 import 'authentication_screen/authentication_screeen.dart';
 
+///Future-ით ვამბობთ რომ ამ ტიპის კლასია და, ანუ მომავალში იღებს ინფოს,
+///async არის ასინქრონული, ანუ არ ელოდება წინა მოქმედების დასრულებას,
+///რაც მზადაა იმას უშვებს, და await ნიშნავს რომ დაელოდე, მნიშვნელობას რომ მიიღებ
+/// მერე გააგრძელე მოქმედება.
 Future<void> main() async {
+  ///ქვედა ორი სჭირდება firebase-ს. პირველი ხაზი
+  ///უზრუნველყოფს დართის ქვედა ფენაზე წვდომას, რაც მეორე სტრიქონს სჭირდება
+  ///რათა native კოდს მისწვდეს platform channels-ის გამოყენებით.
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -22,11 +30,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      ///ამითი იქმნება flutter-ის თემა, რომელსაც ვცვლით
+      ///შემდეგ ჩვენს გემოზე
       theme: ThemeData.dark().copyWith(
         textTheme: const TextTheme(
           bodyText1: TextStyle(color: Colors.black54),
         ),
       ),
+
+      ///გვერდები ნავიგაციისთვის
+
       initialRoute: Auth.pathId,
       routes: {
         Auth.pathId: (context) => const Auth(),

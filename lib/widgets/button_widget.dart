@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+/// ღილაკების ვიჯეტი, რომელის ქრეშავს აპლიკაციას და არ ვიყენებ
 Widget customButton({
   required Function onPressed,
   required bool isLogin,

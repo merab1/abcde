@@ -19,6 +19,7 @@ class _LoginState extends State<Login> {
   final _auth = FirebaseAuth.instance;
 
   bool _isLoading = false;
+  ///აქაც ვიჯეტები, textfield გამოძახებულია თავისი კლასიდან.
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,8 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         title: const Text('Login'),
       ),
+      ///თუ loading არის true, გაუშვი loader, თუ არა და ჩატვირთე
+      ///SizedBox.expand ვიჯეტი. Ternary ოპერატორის გამოყენებით.
       body: _isLoading == true
           ? const Center(
               child: LinearProgressIndicator(),
@@ -59,6 +62,9 @@ class _LoginState extends State<Login> {
                     height: 20,
                   ),
                   MaterialButton(
+                    ///თუ ერთი ერთ-ერთი ცარიელია snackBar-ით უთხარი user-ს
+                    ///რომ ცარიელია და სანამ სწორად არ შეავსებს არ გადაიყვანო შემდეგ გვერზე
+                    /// ScaffoldMessenger.of გარე კონტექსტს იღებს და ამის საშუალებით ეუბნება.
                     onPressed: () async {
                       if (_email == '' && _password != '') {
                         const snackBar =
@@ -79,7 +85,9 @@ class _LoginState extends State<Login> {
                           print(_password);
                         });
                       }
+                      ///ცადე ეს, თუ გამოვიდა ხო კარგი და თუ არა, ერორი დამიბეჭდე
                       try {
+                        ///firebase-ის ავტორიზაცია
                         final user = await _auth.signInWithEmailAndPassword(
                             email: _email, password: _password);
                         if (user != null) {

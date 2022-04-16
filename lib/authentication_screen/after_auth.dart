@@ -16,14 +16,18 @@ class AfterAuth extends StatefulWidget {
 class _AfterAuthState extends State<AfterAuth> {
   String welcomeScreen = 'Welcome to the club';
 
+  ///ეს მეთოდი ანდროიდის onCreate-ის ტოლფასია. ეფლზე არ მახსოვს რა ჰქვია.
+  ///ანუ აქ იტვირთება ის ინფო, რაც გვჭირდება რომ აპლიკაციის გაშვების დროს უკვე ჩატვირთული
+  ///იყოს.
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    ///ამ მეთოდს ვდებთ აქ რომ ჩატვირთვისას უკვე განახლებული დამხვდეს.
     internalMemory();
     //final prefs = await SharedPreferences.getInstance();
   }
-
+///აქ ვიჯეტები, ღრმა ფილოსოფიური მგონი არაფერი :D და Drawer.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,9 +133,12 @@ class _AfterAuthState extends State<AfterAuth> {
         backgroundColor: Colors.lightBlue,
         onPressed: () async {
           await Navigator.pushNamed(context, PhotosPage.pathId);
+          ///აქ გამოვიყენოთ ეს მეთოდი რომ უკან დაბრუნებისას, გვერდი განახლებული
+          ///დამხვდეს
           internalMemory();
           PhotosService photosService = PhotosService();
           // String url =
+          ///აქ თუ ინფოს ვერ წამოიღებს, ცალკე გატანილი ალერთ ბოქსი რომ ამოხტეს.
           var data = await photosService.getPhotos();
           if (data == null) {
             return customAlertDialog(context);
@@ -146,7 +153,9 @@ class _AfterAuthState extends State<AfterAuth> {
   }
 
   String address = '';
-
+///ეს მეთოდია იმისთვის რომ shared preferences-ით წამოვიღოთ ინფო,
+  ///ამ შემთხვევაში სურათის მისამართი - სტრინგის ტიპის. და ვიყენებთ setState მეთოდს
+  ///რომ განაახლოს UI.
   internalMemory() async {
     final prefs = await SharedPreferences.getInstance();
     address = await prefs.getString('urlAddress')!;

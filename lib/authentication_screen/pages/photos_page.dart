@@ -15,7 +15,7 @@ class PhotosPage extends StatefulWidget {
 
 class _PhotosPageState extends State<PhotosPage> {
   PhotosService photosService = PhotosService();
-
+/// აქაც გაშვებისთანავა, ინიტში ვიძახებთ ფოტოების კლასს, რომ მაშინცე დაიყოს ჩატვირთვა
   @override
   void initState() {
     super.initState();
@@ -59,6 +59,7 @@ class _PhotosPageState extends State<PhotosPage> {
       child: FutureBuilder(
         future: photosService.getPhotos(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          ///თუ ელოდება, პროგრესბარი, თუ არა და ბილდლისტი ჩატვირთოს
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: LinearProgressIndicator(),

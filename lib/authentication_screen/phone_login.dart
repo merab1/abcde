@@ -23,7 +23,8 @@ class _PhoneLoginState extends State<PhoneLogin> {
       MobileVerificationState.SHOW_MOBILE_FORM_STATE;*/
   String _phoneNumber = '';
   String _smsCode = '';
-
+///ტელეფონით რეგისტრაციის გავლა
+  ///ინსტანსი ავტორიზაციისთვის
   final _auth = FirebaseAuth.instance;
 
  // bool _isLoading = false;
@@ -67,17 +68,20 @@ class _PhoneLoginState extends State<PhoneLogin> {
                   });*/
                 }
                 try {
+                  ///ტელეფონის ნომრით ავტორიზაცია, მესიჯის ლოდინის დრო: 60 წამი
                   await _auth.verifyPhoneNumber(
                     timeout: const Duration(seconds: 60),
 
                     phoneNumber: _phoneNumber,
-
+///ეს გამოიყენება მაშინ როცა კოდს ვადა გაუვა
                     codeAutoRetrievalTimeout: (String verificationId) {},
-
+///თუ წარმატებით დასრულდა
                     verificationCompleted:
                         (PhoneAuthCredential phoneAuthCredential) async {
                       await _auth.signInWithCredential(phoneAuthCredential);
                     },
+                    ///კოდის გამოგზავნის მეთოდი. აქ მქონდა შეცდომა,
+                    ///verificationId -ს არ გადავცემდი ინფოს
                       codeSent: (String verificationIdFromFirebase,
                           int? forceResendingToken) async {
                         verificationId = verificationIdFromFirebase;
@@ -87,7 +91,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
                             verificationId: verificationId, smsCode: smsCode);
                         await _auth.signInWithCredential(credential);
                       },
-
+///თუ არ დამთავრდა წამრატებით...
                     verificationFailed: (FirebaseAuthException error) {
                       if (error.code == 'invalid-phone-number') {
                         print('The provided phone number is not valid.');
@@ -130,6 +134,11 @@ class _PhoneLoginState extends State<PhoneLogin> {
                   });*/
                 }
                 try {
+                  ///თუ სწორადაა ავტორიზაცია, შევიდეს
+                  ///გუშინ დილით შედიოდა. ახლა ვეღარ შევედი. after14 branch-ზეც
+                  ///შევამოწმებ, რამე ხომ არ ავურიე...
+                  ///The sms code has expired. Please re-send the verification code to try again.
+                  ///-ო. შეიძლება გვიან მოდის და იმიტომ?
                   PhoneAuthCredential phoneAuthCredential =
                       PhoneAuthProvider.credential(
                           verificationId: verificationId, smsCode: _smsCode);

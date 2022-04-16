@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+///ალერთ ვიჯეტი, ინტი თუ არ იქნება მაშინ რომ ამოხტეს
 customAlertDialog(BuildContext context) {
   return showDialog<void>(
     context: context,

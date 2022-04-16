@@ -11,7 +11,8 @@ class Registration extends StatefulWidget {
   @override
   State<Registration> createState() => _RegistrationState();
 }
-
+///რეგისტრაციის გვერდი, თითქმის იგივენაირი რაც შესვლის, უბრალოდ აქ რეგისტრირდება
+///მომხმარებელი
 class _RegistrationState extends State<Registration> {
   String _email = '';
   String _password = '';
@@ -78,6 +79,7 @@ class _RegistrationState extends State<Registration> {
                   });
                 }
                 try {
+                  ///firebase-ის რეგისტრაცია
                   final newUser = await _auth.createUserWithEmailAndPassword(
                       email: _email, password: _password);
                   if(newUser != null) {

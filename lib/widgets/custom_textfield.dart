@@ -27,6 +27,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
   String phone = 'Verify your phone number';
   String sms = 'Enter your SMS code';
 
+  ///ტექსტის ჩასაწერი ვიჯეტი, გატანილი გარეთ
+  ///Ternary ოპერატორების კორიანტელი: თუ არის იმეილი, კლავიატურა გამიხადე
+  ///იმეილის ჩასაწერი, თუ არა და არის ტელ. ნომერი გამიხადე ნომრის ჩასაწერი
+  ///და ა.შ...
+  ///
+  /// ჰინთზეც იგივე. თუ იმეილია, ჩამიწერე ჩაწერე იმეილი, თუ არა და არის პაროლი,
+  /// ჩაწერე ჩაწერე პაროლი და ა.შ.
+
   @override
   Widget build(BuildContext context) {
     return Padding(

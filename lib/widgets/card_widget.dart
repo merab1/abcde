@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+///ფოტოების ვიჯეტი, რომელიც SharedPreferences-ით ინახავს ინფოს.
+///სეთით ინახავს.
+///ასევე სნეკბარი, რომ შეინახა სურათი, და
+///ნავიგატორის პოპი, რომელიც დაჭერისას უკანა გვერდზე მაბრუნებს.
+///ასევე გადაეცემა კონტექსი, რომ მიხვდეს სადაა ვიჯეტების ხეში და url, თუ
+///რა უნდა დახატოს.
 
 Widget photoCard(BuildContext context, String url) {
   return GestureDetector(

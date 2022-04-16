@@ -6,7 +6,7 @@ import 'login.dart';
 class LoginRegistration extends StatelessWidget {
   const LoginRegistration({Key? key}) : super(key: key);
   static const String pathId = 'login or registration';
-
+///ვიჯეტები,ღილაკები რეგისტრაციისა და შესვლისთვის
   @override
   Widget build(BuildContext context) {
     return Scaffold(

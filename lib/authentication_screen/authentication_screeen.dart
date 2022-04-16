@@ -7,8 +7,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth extends StatelessWidget {
   const Auth({Key? key}) : super(key: key);
+  ///ეს გამოიყენება ნავიგატორისთვის
   static const String pathId = 'auth';
-
+///ვიჯეტები, სათიათაოდ მგონი არ ღირს დაწერა
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +59,7 @@ class Auth extends StatelessWidget {
       ),
     );
   }
-
+///გუგლის კლასი, რომელიც უზრუველყოფს გუგლის ავტორიზაციით სისტემაში შესვლას.
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
