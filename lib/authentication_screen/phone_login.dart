@@ -146,6 +146,9 @@ class _PhoneLoginState extends State<PhoneLogin> {
                   // signInWithPhoneAuthCredential(phoneAuthCredential);
                   Navigator.pushNamed(context, AfterAuth.pathId);
                 } catch (e) {
+                  const snackBar =
+                  SnackBar(content: Text('Something went wrong'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   print(e);
                 }
               },
