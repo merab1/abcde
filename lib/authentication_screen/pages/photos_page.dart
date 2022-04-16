@@ -15,7 +15,8 @@ class PhotosPage extends StatefulWidget {
 
 class _PhotosPageState extends State<PhotosPage> {
   PhotosService photosService = PhotosService();
-/// აქაც გაშვებისთანავა, ინიტში ვიძახებთ ფოტოების კლასს, რომ მაშინცე დაიყოს ჩატვირთვა
+
+/// აქაც გაშვებისთანავე, ინიტში ვიძახებთ ფოტოების კლასს, რომ მაშინვე დაიწყოს ჩატვირთვა
   @override
   void initState() {
     super.initState();
@@ -31,12 +32,17 @@ class _PhotosPageState extends State<PhotosPage> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(children: [
+          ///ფოტოლისტები ჩამიყაროს ამ სვეტში
           _getPhotoList(),
         ]),
       ),
     );
   }
-
+  /// თითოეული ელემენტი, რომელსაც გადაეცემა ასინქსნეფშოთი, რომელიც გამოიყენება FutureBuilder
+  /// და StreamBuilder-ის მიერ უახლესი ობიექტის შესაქმნელად, ამ შემთხვევაში FutureBuilder, და
+  /// ჩვეულებრივი ინტი, რის მიხედვითაც უნდა ჩატვირთოს ამ ელემენტში სურათი.
+  /// photoItem ინახავს სნეფშოთის ელემენტის ინდექსის webformatURL key-ს value-ს,
+  /// რომელიც კონტექსტთან ერთად გადაეცემა ფოტოქარდს.
   Widget _buildListItem(
       BuildContext context, AsyncSnapshot<dynamic> snapshot, int index) {
     final photoItem = snapshot.data[index].webformatURL;
@@ -44,6 +50,13 @@ class _PhotosPageState extends State<PhotosPage> {
     return photoCard(context, photoItem);
   }
 
+  ///აქ იქმნება თვითონ ლისტი სურათების. თუ სნაფშოთში არის რამე,
+  ///მითხარი რამდენი ობიექტია, თუ ადა და ესე იგი0-ია.
+  ///values-ს აღარ ვიყენებ, პირდაპირ snapshot.data-ს.
+  ///და აბრუნებს ბილდლისტაითემს თავისი პარამეტრებიანა.
+  ///ჰოო მართლა, ListView.builder-ის მაგივრად ჩვეულებრივი ლისტის
+  ///გამოყენებაც შეიძლებოდა მაგრამ ეს სჯობს. ის მთლიანად ჰქმნის ლისტს და
+  ///ეს ეტაპობრივად, როცა ელემენტი თავდება მაშინ ამატებს ახალს.
   Widget _buildList(BuildContext context, AsyncSnapshot<dynamic> snapshot) {
     var values = snapshot.data;
     return ListView.builder(
@@ -53,7 +66,10 @@ class _PhotosPageState extends State<PhotosPage> {
       },
     );
   }
-
+/// ეს კი Expanded-ში ქმნის FutureBuilder ობიექტს, რომელიც იქმნება Future-ში მიღებული ინფორმაციით.
+  /// future-ში გადაეცემა მისამართი photosService.getPhotos()-დან
+  /// builder კი ქმნის ობიექტს კონტექსტისა და სნეფშოთის დახმარებით.
+  /// ეს მეთოდი აბრუნებს ბილდლისტს და გადაეცემა მთავარ build მეთოდს ლისტის ეკრანზე გამოსატანად
   Widget _getPhotoList() {
     return Expanded(
       child: FutureBuilder(
